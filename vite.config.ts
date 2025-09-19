@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/ai-bag/", 
+  base: mode === "development" ? "/" : "/AI-BAG/",
 }));
 
 
