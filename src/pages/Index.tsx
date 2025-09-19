@@ -9,8 +9,8 @@ const Index = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Automations for{" "}
-            <span className="text-brand-blue1">Everyone</span>
+            Project{" "}
+            <span className="text-brand-blue1">AI-BAG</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
             Our mission is to continuously improve automation at the company and make it accessible to all teams.
@@ -128,7 +128,7 @@ const Index = () => {
       {/* Contact Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-foreground mb-8">Get in Touch</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-8">Looking for Help?</h2>
           <div className="bg-card rounded-2xl p-8 shadow-soft border border-border">
             <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
               <div className="flex items-center space-x-4">
@@ -138,14 +138,14 @@ const Index = () => {
                   className="w-16 h-16 rounded-full"
                 />
                 <div className="text-left">
-                  <h3 className="text-lg font-semibold text-foreground">Automation Team</h3>
-                  <p className="text-muted-foreground">Project Maintainers</p>
+                  <h3 className="text-lg font-semibold text-foreground">Marketing Manager</h3>
+                  <p className="text-muted-foreground">Sean McMahon</p>
                 </div>
               </div>
               <Button asChild variant="brand">
                 <a href="mailto:automation@company.com">
                   <Mail className="mr-2 h-4 w-4" />
-                  automation@company.com
+                  sean.mcmahon@bannisters.com
                 </a>
               </Button>
             </div>
