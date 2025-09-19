@@ -44,7 +44,7 @@ export const Sidebar = () => {
               <div className="w-8 h-8 bg-brand-blue1 rounded-lg flex items-center justify-center">
                 <Home className="w-4 h-4 text-white" />
               </div>
-              <span>Automation Hub</span>
+              <span>AI-BAG</span>
             </Link>
           </div>
 
@@ -93,7 +93,7 @@ export const Sidebar = () => {
           {/* Footer */}
           <div className="p-6 border-t border-white/10">
             <p className="text-xs text-white/50 text-center font-medium">
-              © 2024 Automation Hub
+              © 2025 Bannister
             </p>
           </div>
         </div>

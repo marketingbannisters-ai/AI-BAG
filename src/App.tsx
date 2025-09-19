@@ -19,7 +19,6 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
         <div className="min-h-screen bg-white">
           <Sidebar />
           <div className="lg:pl-72 transition-all duration-300">
@@ -37,7 +36,6 @@ const App = () => (
             <Footer />
           </div>
         </div>
-      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -24,7 +24,7 @@ export const Navbar = () => {
               to="/"
               className="text-navbar-text text-xl font-bold hover:text-navbar-active transition-colors"
             >
-              Automation Hub
+              AI-BAG
             </Link>
           </div>
 
