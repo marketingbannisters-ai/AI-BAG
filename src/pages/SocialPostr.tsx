@@ -1,305 +1,250 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Copy, CheckCircle, Users, Image, Link, Hash, Calendar } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { 
+  Calendar, 
+  Users, 
+  Image, 
+  Upload, 
+  Target, 
+  Clock, 
+  Mail, 
+  CheckCircle, 
+  AlertTriangle,
+  FileImage,
+  Video,
+  Smartphone,
+  Zap,
+  Link2,
+  Shield
+} from "lucide-react";
 import avatarSocial from "@/assets/avatar-social.jpg";
 
 const SocialPostr = () => {
-  const [workflowChecks, setWorkflowChecks] = useState<Record<string, boolean>>({});
-  const [postingTemplate, setPostingTemplate] = useState({
-    platform: "",
-    caption: "",
-    hashtags: "",
-    link: "",
-    imageNotes: ""
-  });
-
-  const workflowSteps = [
-    { id: "client", label: "Client approval received", description: "Confirm client has approved the content" },
-    { id: "copy", label: "Copy reviewed and finalized", description: "All text has been proofread and approved" },
-    { id: "visuals", label: "Visual assets prepared", description: "Images, videos, or graphics are ready" },
-    { id: "schedule", label: "Posting schedule confirmed", description: "Date and time have been scheduled" },
-    { id: "utm", label: "UTM parameters added", description: "Tracking codes applied to all links" },
-    { id: "hashtags", label: "Hashtags researched", description: "Relevant and trending hashtags selected" },
-    { id: "crosspost", label: "Cross-platform strategy planned", description: "Content adapted for each platform" },
-    { id: "backup", label: "Backup content prepared", description: "Alternative posts ready if needed" }
-  ];
-
-  const handleCheckboxChange = (stepId: string, checked: boolean) => {
-    setWorkflowChecks(prev => ({ ...prev, [stepId]: checked }));
-  };
-
-  const handleTemplateChange = (field: string, value: string) => {
-    setPostingTemplate(prev => ({ ...prev, [field]: value }));
-  };
-
-  const copyToClipboard = () => {
-    const template = `Platform: ${postingTemplate.platform}
-
-Caption:
-${postingTemplate.caption}
-
-Hashtags:
-${postingTemplate.hashtags}
-
-Link:
-${postingTemplate.link}
-
-Image Notes:
-${postingTemplate.imageNotes}`;
-
-    navigator.clipboard.writeText(template);
-    toast({
-      title: "Copied to clipboard",
-      description: "Template content has been copied successfully",
-    });
-  };
-
-  const completedSteps = Object.values(workflowChecks).filter(Boolean).length;
-  const totalSteps = workflowSteps.length;
-
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-4">SocialPostr</h1>
-          <div className="flex items-center justify-center space-x-3 text-muted-foreground mb-4">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold text-foreground mb-6">
+            SocialPostr
+          </h1>
+          <div className="flex items-center justify-center space-x-3 text-muted-foreground mb-6">
             <span>Created by</span>
             <div className="flex items-center space-x-2">
               <Avatar className="h-6 w-6">
-                <AvatarImage src={avatarSocial} alt="Social Media Team" />
-                <AvatarFallback>ST</AvatarFallback>
+                <AvatarImage src="https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg" alt="Varun Teja" />
+                <AvatarFallback>VT</AvatarFallback>
               </Avatar>
               <Badge variant="secondary" className="bg-brand-gold2/10 text-brand-gold2">
-                Social Media Team
+                Varun Teja
               </Badge>
             </div>
           </div>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Streamlined workflow checklist and template system for consistent social media posting across all platforms.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            One Tool to Schedule Social Media Posts Across All Dealerships
           </p>
         </div>
 
-        <Tabs defaultValue="workflow" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
-            <TabsTrigger value="workflow" className="flex items-center space-x-2">
-              <CheckCircle className="h-4 w-4" />
-              <span>Workflow</span>
-            </TabsTrigger>
-            <TabsTrigger value="assets" className="flex items-center space-x-2">
-              <Image className="h-4 w-4" />
-              <span>Assets</span>
-            </TabsTrigger>
-            <TabsTrigger value="template" className="flex items-center space-x-2">
-              <Copy className="h-4 w-4" />
-              <span>Template</span>
-            </TabsTrigger>
-            <TabsTrigger value="qa" className="flex items-center space-x-2">
-              <Users className="h-4 w-4" />
-              <span>QA</span>
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="workflow" className="space-y-6">
-            <div className="bg-card rounded-2xl shadow-soft border border-border p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-foreground">Pre-Post Checklist</h2>
-                <div className="flex items-center space-x-3">
-                  <span className="text-muted-foreground">
-                    {completedSteps} of {totalSteps} completed
-                  </span>
-                  <div className="w-20 bg-muted rounded-full h-2">
-                    <div 
-                      className="bg-brand-blue1 h-2 rounded-full transition-all duration-300"
-                      style={{ width: `${(completedSteps / totalSteps) * 100}%` }}
-                    />
-                  </div>
+        {/* Why This Tool is Special */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Why This Tool is Special</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-brand-blue1/20 hover:border-brand-blue1/40 transition-all duration-300 hover:shadow-lg group">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-brand-blue1 to-brand-blue2 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Target className="h-8 w-8 text-white" />
                 </div>
-              </div>
+                <CardTitle className="text-xl">Single Access Point</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-muted-foreground">
+                  Manage and schedule posts for every dealership from one link.
+                </p>
+              </CardContent>
+            </Card>
 
+            <Card className="border-brand-blue2/20 hover:border-brand-blue2/40 transition-all duration-300 hover:shadow-lg group">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-brand-blue2 to-brand-gold1 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Zap className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-xl">Post Once, Publish Everywhere</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-muted-foreground">
+                  If a SM campaign is common across all dealerships, publish it in just 3 minutes with one submission.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-brand-gold1/20 hover:border-brand-gold1/40 transition-all duration-300 hover:shadow-lg group">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-brand-gold1 to-brand-gold2 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Clock className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-xl">Flexible Scheduling</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-muted-foreground">
+                  Set different times for each dealership so posts go live when they're most effective.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* How to Access */}
+        <div className="mb-16">
+          <Card className="border-amber-500/20 bg-gradient-to-r from-amber-50/50 to-orange-50/50 dark:from-amber-950/20 dark:to-orange-950/20">
+            <CardHeader>
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center">
+                  <Shield className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-2xl">How to Access</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <AlertTriangle className="h-5 w-5 text-amber-500 mt-0.5 flex-shrink-0" />
+                <p className="text-foreground font-medium">
+                  This tool is sensitive and access is restricted to approved users.
+                </p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Mail className="h-5 w-5 text-brand-blue1 mt-0.5 flex-shrink-0" />
+                <p className="text-muted-foreground">
+                  To request access, email <span className="font-semibold text-brand-blue1">sean.mcmahon@bannisters.com</span>. Once assessed, Sean will share the direct link with you.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* How to Use */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">How to Use</h2>
+          <div className="grid gap-6">
+            {[
+              {
+                step: 1,
+                title: "Choose Post Type",
+                description: "Story, image, video, or other formats.",
+                imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567485/Screenshot_2025-09-22_at_11.55.28_AM_dei3lk.png",
+                icon: FileImage,
+                color: "brand-blue1"
+              },
+              {
+                step: 2,
+                title: "Select Platforms",
+                description: "Post to one or multiple platforms at once.",
+                imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567485/Screenshot_2025-09-22_at_11.55.45_AM_iwcndr.png",
+                icon: Smartphone,
+                color: "brand-blue2"
+              },
+              {
+                step: 3,
+                title: "Upload Creatives & Caption",
+                description: "Add your images, carousel or videos along with the caption.",
+                imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567485/Screenshot_2025-09-22_at_11.55.57_AM_iexd7i.png",
+                icon: Upload,
+                color: "brand-gold1"
+              },
+              {
+                step: 4,
+                title: "Pick Dealerships",
+                description: "Post to one or many dealerships with a single action.",
+                imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567486/Screenshot_2025-09-22_at_11.56.35_AM_f1vilt.png",
+                icon: Users,
+                color: "brand-blue2"
+              },
+              {
+                step: 5,
+                title: "Set Date & Time",
+                description: "Choose when your post should go live. If you select the current or a past time, it will publish immediately.",
+                imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567486/Screenshot_2025-09-22_at_11.56.45_AM_acvcf0.png",
+                icon: Calendar,
+                color: "brand-blue1"
+              }
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <Card key={index} className="hover:shadow-lg transition-all duration-300 group">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className={`w-12 h-12 bg-gradient-to-br from-${item.color} to-${item.color}/80 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                          <span className="text-white font-bold text-lg">{item.step}</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1 mr-4">
+                            <h3 className="text-xl font-semibold text-foreground mb-2">{item.title}</h3>
+                            <p className="text-muted-foreground">{item.description}</p>
+                          </div>
+                          <div className="flex-shrink-0">
+                            <IconComponent className={`h-8 w-8 text-${item.color}`} />
+                          </div>
+                        </div>
+                        <div className="mt-4">
+                          <div className="w-4/5 bg-muted rounded-lg border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="p-6 border-b border-white/10">
+                                  <img 
+                                    src={item.imageUrl}
+                                    alt="SocialPostr Workflow Screenshots"
+                                    className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+                                  />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Important Instructions */}
+        <div className="mb-16">
+          <Card className="border-red-500/20 bg-gradient-to-r from-red-50/50 to-pink-50/50 dark:from-red-950/20 dark:to-pink-950/20">
+            <CardHeader>
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center">
+                  <AlertTriangle className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-2xl">Important Instructions</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
               <div className="space-y-4">
-                {workflowSteps.map((step) => (
-                  <div key={step.id} className="flex items-start space-x-4 p-4 rounded-lg border border-border hover:bg-muted/30 transition-colors">
-                    <Checkbox
-                      id={step.id}
-                      checked={workflowChecks[step.id] || false}
-                      onCheckedChange={(checked) => handleCheckboxChange(step.id, checked as boolean)}
-                      className="mt-1"
-                    />
-                    <div className="flex-1">
-                      <label 
-                        htmlFor={step.id}
-                        className="text-base font-medium text-foreground cursor-pointer block"
-                      >
-                        {step.label}
-                      </label>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="assets" className="space-y-6">
-            <div className="bg-card rounded-2xl shadow-soft border border-border p-6">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Asset Requirements</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center">
-                    <Image className="mr-2 h-5 w-5 text-brand-blue1" />
-                    Visual Assets
-                  </h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• High-resolution images (1080x1080 for Instagram)</li>
-                    <li>• Platform-specific dimensions</li>
-                    <li>• Brand-compliant visuals</li>
-                    <li>• Alternative text for accessibility</li>
-                    <li>• Video files under platform limits</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center">
-                    <Link className="mr-2 h-5 w-5 text-brand-blue2" />
-                    Link Assets
-                  </h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• UTM-tagged URLs</li>
-                    <li>• Shortened links (bit.ly, etc.)</li>
-                    <li>• Landing page preview cards</li>
-                    <li>• Backup destination URLs</li>
-                    <li>• Click tracking enabled</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="template" className="space-y-6">
-            <div className="bg-card rounded-2xl shadow-soft border border-border p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-foreground">Posting Template</h2>
-                <Button onClick={copyToClipboard} variant="brand" size="sm">
-                  <Copy className="mr-2 h-4 w-4" />
-                  Copy Template
-                </Button>
-              </div>
-
-              <div className="grid gap-6">
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Platform
-                  </label>
-                  <Input
-                    placeholder="e.g., Instagram, LinkedIn, Twitter"
-                    value={postingTemplate.platform}
-                    onChange={(e) => handleTemplateChange("platform", e.target.value)}
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Caption
-                  </label>
-                  <Textarea
-                    placeholder="Write your social media caption here..."
-                    rows={4}
-                    value={postingTemplate.caption}
-                    onChange={(e) => handleTemplateChange("caption", e.target.value)}
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block flex items-center">
-                      <Hash className="mr-1 h-4 w-4" />
-                      Hashtags
-                    </label>
-                    <Textarea
-                      placeholder="#hashtag1 #hashtag2 #hashtag3"
-                      rows={3}
-                      value={postingTemplate.hashtags}
-                      onChange={(e) => handleTemplateChange("hashtags", e.target.value)}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block flex items-center">
-                      <Link className="mr-1 h-4 w-4" />
-                      Link
-                    </label>
-                    <Input
-                      placeholder="https://example.com?utm_source=social"
-                      value={postingTemplate.link}
-                      onChange={(e) => handleTemplateChange("link", e.target.value)}
-                    />
-                    <Textarea
-                      placeholder="Image description and notes..."
-                      rows={2}
-                      className="mt-2"
-                      value={postingTemplate.imageNotes}
-                      onChange={(e) => handleTemplateChange("imageNotes", e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="qa" className="space-y-6">
-            <div className="bg-card rounded-2xl shadow-soft border border-border p-6">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Quality Assurance</h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">Final Review Checklist</h3>
-                  <div className="space-y-2 text-muted-foreground">
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-brand-gold1" />
-                      <span>Spelling and grammar checked</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-brand-gold1" />
-                      <span>Brand voice and tone consistent</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-brand-gold1" />
-                      <span>Links tested and working</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-brand-gold1" />
-                      <span>Hashtags researched and relevant</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-brand-gold1" />
-                      <span>Visual assets optimized for platform</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">Approval Process</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Ensure all posts go through the proper approval chain before publishing:
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                  <p className="text-foreground">
+                    Upload creatives that meet Facebook's content guidelines, otherwise your post may be rejected.
                   </p>
-                  <div className="bg-muted rounded-lg p-4">
-                    <div className="text-sm text-muted-foreground">
-                      Content Creator → Team Lead → Client/Manager → Scheduled for Publishing
-                    </div>
-                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                  <p className="text-foreground">
+                    For carousel posts, number your files as: <code className="bg-muted px-2 py-1 rounded text-sm font-mono">1.png, 2.jpg, 3.png, etc.</code> (File extension doesn't matter). This ensures the correct display order.
+                  </p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                  <p className="text-foreground">
+                    Choosing a past time will be treated as "Post Now."
+                  </p>
                 </div>
               </div>
-            </div>
-          </TabsContent>
-        </Tabs>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );

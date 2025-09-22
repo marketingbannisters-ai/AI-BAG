@@ -25,10 +25,10 @@ const App = () => (
             <main className="min-h-screen">
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/reports" element={<Reports />} />
                 <Route path="/email-genius" element={<EmailGenius />} />
                 <Route path="/socialpostr" element={<SocialPostr />} />
-                <Route path="/designer" element={<Designer />} />
+                <Route path="/design-genie" element={<Designer />} />
+                <Route path="/reports" element={<Reports />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

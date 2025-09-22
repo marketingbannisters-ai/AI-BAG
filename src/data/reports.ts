@@ -14,93 +14,95 @@ export const reports: Report[] = [
   {
     id: "website-stats",
     tier: "primary",
-    title: "Website Stats",
-    description: "Comprehensive analytics dashboard tracking site performance, user engagement, and conversion metrics.",
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=225&fit=crop",
+    title: "Website Report",
+    description: "Key stats and performance metrics of our Bannister websites.",
+    imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/c_auto,w_400/website_analtyics_m3spog.jpg",
     author: {
-      name: "Analytics Team",
-      avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face"
+      name: "Varun Teja",
+      avatarUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg"
     },
-    href: "https://lookerstudio.google.com/reports/website-stats",
+    href: "https://lookerstudio.google.com/reporting/6cf1b00c-edad-487d-9fbf-14f37a248794",
     badge: "Looker Studio"
   },
   {
     id: "seo",
     tier: "primary", 
     title: "SEO Performance",
-    description: "Track keyword rankings, organic traffic growth, and search engine optimization metrics across all pages.",
-    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=225&fit=crop",
+    description: "On-page SEO insights directly from Google Search Console.",
+    imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/c_auto,w_400/seo_phjayz.jpg",
     author: {
-      name: "Marketing Team",
-      avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=48&h=48&fit=crop&crop=face"
+      name: "Varun Teja",
+      avatarUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg"
     },
-    href: "https://lookerstudio.google.com/reports/seo",
+    href: "https://lookerstudio.google.com/reporting/6cf1b00c-edad-487d-9fbf-14f37a248794",
     badge: "Looker Studio"
   },
+  {
+    id: "gmb-reviews",
+    tier: "primary",
+    title: "Google Business Reviews",
+    description: "AI-driven analysis of our GMB customer reviews.",
+    imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/c_auto,w_400/gmb_qral50.jpg",
+    author: {
+      name: "Varun Teja",
+      avatarUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg"
+    },
+    href: "https://lookerstudio.google.com/reporting/3315f269-c0ed-4ebd-b2c0-ff7ef5d0cc68",
+    badge: "Looker Studio"
+  },
+  /*
   {
     id: "social-media",
     tier: "primary",
     title: "Social Media Analytics",
-    description: "Monitor social media performance, engagement rates, and growth across all platforms and campaigns.",
-    imageUrl: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=400&h=225&fit=crop",
+    description: "Engagement and reach stats from Facebook, Instagram, and YouTube.",
+    imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/c_auto,w_400/social_media_l6u11d.jpg",
     author: {
-      name: "Social Team",
-      avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=48&h=48&fit=crop&crop=face"
+      name: "Varun Teja",
+      avatarUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg"
     },
     href: "https://lookerstudio.google.com/reports/social-media",
     badge: "Looker Studio"
   },
+  */
   {
     id: "google-ads",
     tier: "primary",
-    title: "Google Ads Performance",
-    description: "Detailed analysis of Google Ads campaigns, including cost-per-click, conversion rates, and ROI metrics.",
-    imageUrl: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=400&h=225&fit=crop",
+    title: "Google Ads Report",
+    description: "Performance and ROI insights from Google Ads campaigns.",
+    imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/c_auto,w_400/google_ads_l0sfce.jpg",
     author: {
-      name: "PPC Team",
-      avatarUrl: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=48&h=48&fit=crop&crop=face"
+      name: "Varun Teja",
+      avatarUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg"
     },
-    href: "https://lookerstudio.google.com/reports/google-ads",
+    href: "https://lookerstudio.google.com/reporting/4968c533-9a33-4b48-b007-4538e80d6760",
     badge: "Looker Studio"
   },
   {
     id: "facebook-ads",
     tier: "primary",
-    title: "Facebook Ads Dashboard",
-    description: "Track Facebook and Instagram ad performance, audience insights, and campaign optimization opportunities.",
-    imageUrl: "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=400&h=225&fit=crop",
+    title: "Facebook Ads Report",
+    description: "Detailed results from Facebook advertising campaigns.",
+    imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/c_auto,w_400/facebook-ads_br5nco.jpg",
     author: {
-      name: "Social Ads Team",
-      avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=48&h=48&fit=crop&crop=face"
+      name: "Varun Teja",
+      avatarUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg"
     },
-    href: "https://lookerstudio.google.com/reports/facebook-ads",
+    href: "https://lookerstudio.google.com/reporting/e75f4579-e8eb-4a97-8ddf-04e7c761135e",
     badge: "Looker Studio"
   },
   // Secondary Reports
   {
     id: "industry-stats",
     tier: "secondary",
-    title: "Industry Benchmarks",
-    description: "Compare performance against industry standards and competitor analysis across key business metrics.",
-    imageUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=225&fit=crop",
+    title: "Industry Insights",
+    description: "Latest trends and insights from the automotive industry.",
+    imageUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/c_auto,w_400/automotive-industry_nsh5ky.jpg",
     author: {
-      name: "Research Team",
-      avatarUrl: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=48&h=48&fit=crop&crop=face"
+      name: "Varun Teja",
+      avatarUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg"
     },
-    href: "https://lookerstudio.google.com/reports/industry-stats",
-    badge: "Looker Studio"
-  },
-  {
-    id: "gmb-reviews",
-    tier: "secondary",
-    title: "Google My Business Reviews",
-    description: "Monitor online reputation, review sentiment analysis, and customer feedback trends across locations.",
-    imageUrl: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=400&h=225&fit=crop",
-    author: {
-      name: "Reputation Team",
-      avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=48&h=48&fit=crop&crop=face"
-    },
-    href: "https://lookerstudio.google.com/reports/gmb-reviews",
+    href: "https://lookerstudio.google.com/reporting/d6725d64-b323-495c-8674-c06fa4a5213e",
     badge: "Looker Studio"
   }
 ];

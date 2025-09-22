@@ -16,7 +16,7 @@ const Designer = () => {
             <span>Created by</span>
             <div className="flex items-center space-x-2">
               <Avatar className="h-6 w-6">
-                <AvatarImage src={avatarDesign} alt="Design Team" />
+                <AvatarImage src="https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg" alt="Design Team" />
                 <AvatarFallback>DT</AvatarFallback>
               </Avatar>
               <Badge variant="secondary" className="bg-brand-blue1/10 text-brand-blue1">
@@ -24,9 +24,14 @@ const Designer = () => {
               </Badge>
             </div>
           </div>
+          <h2 className="text-3xl font-bold text-foreground mb-4 flex items-center justify-center">
+            Under Construction. Comming Soon!
+          </h2>
+          {/* Uncomment below section when consturction is over
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            AI-powered design assistant for creating professional graphics, layouts, and visual content with automated workflows.
+           Under Construction. Comming Soon!
           </p>
+          */}
         </div>
 
         <div className="bg-card rounded-2xl shadow-soft border border-border p-6 mb-8">

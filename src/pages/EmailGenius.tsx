@@ -11,10 +11,32 @@ const EmailGenius = () => {
 
   const quickLinks = [
     { id: "install", label: "Install", icon: Download },
-    { id: "permissions", label: "Permissions", icon: Settings },
+    /* {  id: "permissions", label: "Permissions", icon: Settings  }, */
     { id: "troubleshooting", label: "Troubleshooting", icon: AlertCircle },
     { id: "support", label: "Support", icon: HelpCircle },
   ];
+
+    const url = "https://raw.githubusercontent.com/marketingbannisters-ai/email-genius/refs/heads/main/manifest.xml";
+
+  const downloadFile = async () => {
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = "manifest.xml"; // you control the filename
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      console.error("Download failed:", err);
+      alert("Sorry, the download failed. Please try again.");
+    }
+  };
 
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8">
@@ -22,14 +44,14 @@ const EmailGenius = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">Email Genius</h1>
           <div className="flex items-center justify-center space-x-3 text-muted-foreground mb-4">
-            <span>Created by</span>
+            <span>Contributed By</span>
             <div className="flex items-center space-x-2">
               <Avatar className="h-6 w-6">
-                <AvatarImage src={avatarAutomation} alt="Automation Team" />
+                <AvatarImage src="https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg" alt="Automation Team" />
                 <AvatarFallback>AT</AvatarFallback>
               </Avatar>
               <Badge variant="secondary" className="bg-brand-gold1/10 text-brand-gold1">
-                Automation Team
+                Varun Teja
               </Badge>
             </div>
           </div>
@@ -40,7 +62,7 @@ const EmailGenius = () => {
 
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem value="item-1" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
@@ -61,12 +83,11 @@ const EmailGenius = () => {
                     </p>
                     <div className="bg-muted rounded-lg p-4">
                       <code className="text-sm text-brand-navy">
-                        https://automation-hub.com/downloads/email-genius-manifest.xml
+                        <a href = "https://raw.githubusercontent.com/marketingbannisters-ai/email-genius/refs/heads/main/manifest.xml" download = "manifest.xml">https://raw.githubusercontent.com/marketingbannisters-ai/email-genius/refs/heads/main/manifest.xml</a>
                       </code>
                     </div>
-                    <Button variant="brand" className="w-full sm:w-auto">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Manifest
+                    <Button variant="brand" className="w-full sm:w-auto" onClick={downloadFile}>
+                      <Download className="mr-2 h-4 w-4" />Download Manifest.xml
                     </Button>
                   </div>
                 </AccordionContent>
@@ -80,7 +101,7 @@ const EmailGenius = () => {
                     </div>
                     <div className="text-left">
                       <h3 className="text-lg font-semibold">2. Install in Outlook</h3>
-                      <p className="text-sm text-muted-foreground">Add the manifest to your Outlook installation</p>
+                      <p className="text-sm text-muted-foreground">Add the manifest to your Outlook Add-in installation</p>
                     </div>
                   </div>
                 </AccordionTrigger>
@@ -88,12 +109,13 @@ const EmailGenius = () => {
                   <div className="space-y-4">
                     <p className="text-muted-foreground">Follow these steps to install Email Genius in your Outlook application:</p>
                     <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
-                      <li>Open Microsoft Outlook</li>
-                      <li>Navigate to <strong>Insert → Get Add-ins</strong></li>
-                      <li>Click on <strong>My add-ins</strong> in the left sidebar</li>
-                      <li>Select <strong>Add a custom add-in → Add from file</strong></li>
+                      <li>Close Outlook desktop app before starting.</li>
+                      <li>Go to <b><a href = "https://aka.ms/olksideload">https://aka.ms/olksideload</a></b></li>
+                      <li>Navigate to <strong>My Add-ins → Custom Add-ins.</strong></li>
+                      <li>Click <strong>Add a custom add-in → Add From File.</strong></li>
                       <li>Browse and select the downloaded manifest.xml file</li>
                       <li>Click <strong>Install</strong> when prompted</li>
+                      <li>Open the Outlook Desktop App. The add-in should now appear.</li>
                     </ol>
                   </div>
                 </AccordionContent>
@@ -106,25 +128,28 @@ const EmailGenius = () => {
                       <Settings className="h-5 w-5 text-white" />
                     </div>
                     <div className="text-left">
-                      <h3 className="text-lg font-semibold">3. Trust Prompts</h3>
-                      <p className="text-sm text-muted-foreground">Approve necessary permissions</p>
+                      <h3 className="text-lg font-semibold">3. Customize the toolbar</h3>
+                      <p className="text-sm text-muted-foreground">Make Email Genius Easy to Reach</p>
                     </div>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
                   <div className="space-y-4">
                     <p className="text-muted-foreground">
-                      When installing, Outlook will display security prompts. Click <strong>"Yes"</strong> or <strong>"Allow"</strong> for:
+                    Customize your Outlook toolbar to keep Email Genius within easy reach.
                     </p>
                     <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                      <li>Reading and writing email content</li>
-                      <li>Accessing external web services</li>
-                      <li>Storing user preferences</li>
+                      <li>Open the Outlook Desktop App.</li>
+                      <li>Click on the three dots (…) in the toolbar.</li>
+                      <li>Find Email Genius in the Installed Add-ins list on the right side of the app.</li>
+                      <li>Drag Email Genius to your desired position at the top of the toolbar.
+                        ✅Tip: Place it in the first position for the quickest access while working with emails.
+                      </li>
                     </ul>
                   </div>
                 </AccordionContent>
               </AccordionItem>
-
+              
               <AccordionItem value="item-4" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center space-x-3">
@@ -132,25 +157,23 @@ const EmailGenius = () => {
                       <Code className="h-5 w-5 text-white" />
                     </div>
                     <div className="text-left">
-                      <h3 className="text-lg font-semibold">4. Connect Webhook</h3>
-                      <p className="text-sm text-muted-foreground">Configure n8n integration</p>
+                      <h3 className="text-lg font-semibold">4. How to use Email Genius?</h3>
                     </div>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
                   <div className="space-y-4">
-                    <p className="text-muted-foreground">
-                      To enable full functionality, connect your n8n webhook URL:
-                    </p>
                     <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
-                      <li>Open Email Genius task pane in Outlook</li>
-                      <li>Navigate to Settings</li>
-                      <li>Paste your n8n webhook URL</li>
-                      <li>Click Save Configuration</li>
+                      <li>Open any email in Outlook that you’d like to reply to. </li>
+                      <li>Click on <b>Email Genius.</b> A frame will open on the right side.</li>
+                      <li>In the input box, type your <b>intent</b> (This is the direction or tone you want your reply to take.)</li>
+                      <li>Wait about <b>5 seconds</b> while Email Genius creates your draft.</li>
+                      <li>Review the suggested email draft, and make any edits you’d like before sending.</li>
                     </ol>
                   </div>
                 </AccordionContent>
               </AccordionItem>
+              
             </Accordion>
 
             {/* Troubleshooting Section */}
@@ -161,22 +184,36 @@ const EmailGenius = () => {
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-foreground mb-2">Manifest validation errors</h3>
-                  <p className="text-muted-foreground">Confirm GUID, icons, and version numbers are correct in the manifest.xml file.</p>
+                  <h3 className="font-semibold text-foreground mb-2">Add-in Not Appearing</h3>
+                  <p className="text-muted-foreground">
+                    <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                      <li>Ensure Outlook is fully closed before installing the add-in.</li>
+                      <li>Check under the three dots (…) menu in the navigation bar.</li>
+                    </ul>
+                  </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-2">Ribbon button not visible</h3>
-                  <p className="text-muted-foreground">Check that Outlook surface (read/compose) matches the manifest configuration and add-in is properly sideloaded.</p>
+                  <h3 className="font-semibold text-foreground mb-2">Installation Failed / Error During Upload</h3>
+                  <p className="text-muted-foreground">
+                    <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                      <li>Confirm you’re connected to the internet.</li>
+                      <li>Ensure you’re using the right link: <a href="https://aka.ms/olksideload" className="text-brand-blue1 hover:underline">https://aka.ms/olksideload</a>, which will navigate to web Outlook app.</li>
+                    </ul></p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-2">Network requests blocked</h3>
-                  <p className="text-muted-foreground">Verify that the n8n webhook URL is reachable from your network and firewall settings allow connections.</p>
+                  <h3 className="font-semibold text-foreground mb-2">Facing error while installing manifest file</h3>
+                  <p className="text-muted-foreground">
+                    <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                      <li>Verify that the correct manifest.xml file was uploaded.</li>
+                      <li>If you are still facing issues, mail to <strong>sean.mcmahon@bannsiters.com</strong>.</li>
+                    </ul>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Sticky Sidebar */}
+          {/* Sticky Sidebar 
           <div className="lg:col-span-1">
             <div className="sticky top-24 bg-card rounded-2xl shadow-soft border border-border p-4">
               <h3 className="text-lg font-semibold text-foreground mb-4">Quick Links</h3>
@@ -196,7 +233,7 @@ const EmailGenius = () => {
                 })}
               </nav>
             </div>
-          </div>
+          </div>*/}
         </div>
       </div>
     </div>

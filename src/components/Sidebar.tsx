@@ -5,10 +5,10 @@ import { useState } from "react";
 
 const navigation = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Reports", href: "/reports", icon: FileText },
   { name: "Email Genius", href: "/email-genius", icon: Mail },
   { name: "SocialPostr", href: "/socialpostr", icon: Share2 },
-  { name: "Designer", href: "/designer", icon: Palette },
+  { name: "DesignGenie", href: "/design-genie", icon: Palette },
+  { name: "Reports", href: "/reports", icon: FileText },
 ];
 
 export const Sidebar = () => {
@@ -36,16 +36,16 @@ export const Sidebar = () => {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-8 border-b border-white/10">
-            <Link
-              to="/"
-              className="text-white text-2xl font-bold hover:text-brand-gold2 transition-colors duration-200 flex items-center space-x-3"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="w-8 h-8 bg-brand-blue1 rounded-lg flex items-center justify-center">
-                <Home className="w-4 h-4 text-white" />
-              </div>
-              <span>AI-BAG</span>
-            </Link>
+        <Link
+    to="/"
+    className="flex items-center space-x-4"
+    onClick={() => setIsOpen(false)}
+  >
+    <img
+      src="https://res.cloudinary.com/dhwhrk0oe/image/upload/c_auto,w_300/BAG_Wordmark_White_gmwxli.png"   // <-- replace with your logo path
+      alt="AI-BAG Logo"  // adjust height as needed
+    />
+  </Link>
           </div>
 
           {/* Navigation */}
