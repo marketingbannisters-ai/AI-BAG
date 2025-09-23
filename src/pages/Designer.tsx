@@ -62,7 +62,7 @@ const Designer = () => {
           </div>
         </div>
 
-        {/* Feature Grid */}
+        {/* Feature Grid 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="bg-card rounded-2xl shadow-soft border border-border p-6">
             <div className="w-12 h-12 bg-brand-blue1 rounded-lg flex items-center justify-center mb-4">
@@ -100,8 +100,8 @@ const Designer = () => {
             </p>
           </div>
         </div>
-
-        {/* Usage Instructions */}
+*/}
+        {/* Usage Instructions 
         <div className="bg-card rounded-2xl shadow-soft border border-border p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">How to Use Designer</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -127,6 +127,7 @@ const Designer = () => {
             </div>
           </div>
         </div>
+        */}
       </div>
     </div>
   );
