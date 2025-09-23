@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Download, Settings, AlertCircle, HelpCircle, Mail, Code } from "lucide-react";
+import { Download, Settings, AlertCircle, HelpCircle, Mail, Code, Users, Clock, DollarSign, Target, Timer } from "lucide-react";
 import avatarAutomation from "@/assets/avatar-automation.jpg";
 
 const EmailGenius = () => {
@@ -83,7 +83,7 @@ const EmailGenius = () => {
                     </p>
                     <div className="bg-muted rounded-lg p-4">
                       <code className="text-sm text-brand-navy">
-                        <a href = "https://raw.githubusercontent.com/marketingbannisters-ai/email-genius/refs/heads/main/manifest.xml" download = "manifest.xml">https://raw.githubusercontent.com/marketingbannisters-ai/email-genius/refs/heads/main/manifest.xml</a>
+                        <a href = "https://raw.githubusercontent.com/marketingbannisters-ai/email-genius/refs/heads/main/manifest.xml" target="_blank" download = "manifest.xml">https://raw.githubusercontent.com/marketingbannisters-ai/email-genius/refs/heads/main/manifest.xml</a>
                       </code>
                     </div>
                     <Button variant="brand" className="w-full sm:w-auto" onClick={downloadFile}>
@@ -110,7 +110,7 @@ const EmailGenius = () => {
                     <p className="text-muted-foreground">Follow these steps to install Email Genius in your Outlook application:</p>
                     <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
                       <li>Close Outlook desktop app before starting.</li>
-                      <li>Go to <b><a href = "https://aka.ms/olksideload">https://aka.ms/olksideload</a></b></li>
+                      <li>Go to <b><a href = "https://aka.ms/olksideload" target="_blank">https://aka.ms/olksideload</a></b></li>
                       <li>Navigate to <strong>My Add-ins → Custom Add-ins.</strong></li>
                       <li>Click <strong>Add a custom add-in → Add From File.</strong></li>
                       <li>Browse and select the downloaded manifest.xml file</li>
@@ -197,7 +197,7 @@ const EmailGenius = () => {
                   <p className="text-muted-foreground">
                     <ul className="list-disc list-inside space-y-1 text-muted-foreground">
                       <li>Confirm you’re connected to the internet.</li>
-                      <li>Ensure you’re using the right link: <a href="https://aka.ms/olksideload" className="text-brand-blue1 hover:underline">https://aka.ms/olksideload</a>, which will navigate to web Outlook app.</li>
+                      <li>Ensure you’re using the right link: <a href="https://aka.ms/olksideload" className="text-brand-blue1 hover:underline" target="_blank">https://aka.ms/olksideload</a>, which will navigate to web Outlook app.</li>
                     </ul></p>
                 </div>
                 <div>
@@ -211,8 +211,92 @@ const EmailGenius = () => {
                 </div>
               </div>
             </div>
-          </div>
 
+            {/* Why to use this tool Section */}
+            <div id="why-use" className="mt-12 bg-card rounded-2xl shadow-soft border border-border p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                <Target className="mr-3 h-6 w-6 text-brand-blue1" />
+                Why to use this tool?
+              </h2>
+              
+              <div className="space-y-6">
+                <p className="text-muted-foreground text-lg">
+                  At Bannister, the numbers tell a compelling story about email efficiency:
+                </p>
+                
+                {/* Statistics Cards */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="bg-gradient-to-br from-brand-blue1/10 to-brand-blue2/10 rounded-xl p-4 border border-brand-blue1/20">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <Users className="h-8 w-8 text-brand-blue1" />
+                      <div>
+                        <div className="text-2xl font-bold text-foreground">1000+</div>
+                        <div className="text-sm text-muted-foreground">Employees</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-brand-gold1/10 to-brand-gold2/10 rounded-xl p-4 border border-brand-gold1/20">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <Mail className="h-8 w-8 text-brand-gold1" />
+                      <div>
+                        <div className="text-2xl font-bold text-foreground">10</div>
+                        <div className="text-sm text-muted-foreground">Considering responding to emails per day</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-brand-navy/10 to-brand-blue1/10 rounded-xl p-4 border border-brand-navy/20">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <Clock className="h-8 w-8 text-brand-navy" />
+                      <div>
+                        <div className="text-2xl font-bold text-foreground">3</div>
+                        <div className="text-sm text-muted-foreground">Consider minutes per email</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-xl p-4 border border-red-500/20">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <Timer className="h-8 w-8 text-red-500" />
+                      <div>
+                        <div className="text-2xl font-bold text-foreground">30</div>
+                        <div className="text-sm text-muted-foreground">Minutes per person/day</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* The Math Breakdown */}
+                <div className="bg-muted/50 rounded-xl p-6 border border-border">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">The Impact:</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between py-2 border-b border-border/50">
+                      <span className="text-muted-foreground">Total time per month (1000 employees):</span>
+                      <span className="font-bold text-foreground text-lg">132,000 Hours</span>
+                    </div>
+                    <div className="flex items-center justify-between py-2">
+                      <span className="text-muted-foreground">Equivalent to hiring:</span>
+                      <span className="font-bold text-brand-blue1 text-lg">62 Full-time Employees</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Goal Statement */}
+                <div className="bg-gradient-to-r from-brand-blue1/5 to-brand-blue2/5 rounded-xl p-6 border border-brand-blue1/20">
+                  <div className="flex items-start space-x-4">
+                    <Target className="h-8 w-8 text-brand-blue1 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-2">Goal of this tool</h3>
+                      <p className="text-muted-foreground text-lg">
+                        <strong>Bring down the amount spent on emails as much as possible.</strong> Every minute saved on email processing translates to more time for productive work and significant cost savings across the organization.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
           {/* Sticky Sidebar 
           <div className="lg:col-span-1">
             <div className="sticky top-24 bg-card rounded-2xl shadow-soft border border-border p-4">
