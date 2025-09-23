@@ -34,7 +34,7 @@ export const reports: Report[] = [
       name: "Varun Teja",
       avatarUrl: "https://res.cloudinary.com/dhwhrk0oe/image/upload/v1758567456/varun-profile-pic_sh12zt.jpg"
     },
-    href: "https://lookerstudio.google.com/reporting/6cf1b00c-edad-487d-9fbf-14f37a248794",
+    href: "https://lookerstudio.google.com/reporting/0bb0439f-0a21-4588-b28c-a6490e816aa9",
     badge: "Looker Studio"
   },
   {
