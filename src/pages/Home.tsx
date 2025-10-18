@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Target, Eye, Users, Mail, FileText, CheckCircle } from "lucide-react";
 
-const Index = () => {
+const Home = () => {
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -250,4 +250,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;
