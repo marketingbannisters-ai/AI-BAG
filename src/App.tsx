@@ -6,7 +6,7 @@ import { BrowserRouter, useLocation, Routes, Route } from "react-router-dom";
 import { Sidebar } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
 import Login from "./pages/Login";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import Reports from "./pages/Reports";
 import EmailGenius from "./pages/EmailGenius";
 import SocialPostr from "./pages/SocialPostr";

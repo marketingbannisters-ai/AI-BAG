@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,21 +7,84 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Lock } from "lucide-react";
 
+
 const Login = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const API_BASE = import.meta.env.VITE_API_BASE ?? "http://127.0.0.1:8000";
 
+  type LoginResponse = {
+  token: string;
+  user: { id: string; email: string };
+};
+
+const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  if (!email || !password) {
+    toast({
+      title: "Missing info",
+      description: "Please enter both email and password.",
+      variant: "destructive",
+    });
+    return;
+  }
+
+  setLoading(true);
+  try {
+    console.log("Try");
+    const res = await fetch(`${API_BASE}/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    console.log(res);
+
+    if (!res.ok) {
+        const ct = res.headers.get("content-type") || "";
+  const body = ct.includes("application/json") ? await res.json() : await res.text();
+  const detail = (body as any)?.detail ?? body ?? "Unknown error";
+  console.log(`HTTP ${res.status}: ${detail}`);
+  throw new Error(`HTTP ${res.status}: ${detail}`);
+      /*
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err?.detail || "Login failed");*/
+    }
+
+    const data: LoginResponse = await res.json();
+
+    // 3) Persist your session token (or set an HttpOnly cookie if you go that route)
+    localStorage.setItem("auth_token", data.token);
+    localStorage.setItem("auth_user", JSON.stringify(data.user));
+
+    toast({
+      title: "Login Successful",
+      description: "Welcome back!",
+    });
+    navigate("/home");
+  } catch (err: any) {
+    
+    console.log("Catch");
+    toast({
+      title: "Login Failed",
+      description: err?.message ?? "Something went wrong.",
+      variant: "destructive",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
+/*
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-/*
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
-    }); */
+    }); 
     
     const error = null;
     if (error) {
@@ -41,7 +103,7 @@ const Login = () => {
 
     setLoading(false);
   };
-
+*/
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-blue1/5 via-white to-brand-blue2/5 p-4">
       <Card className="w-full max-w-md shadow-card">
