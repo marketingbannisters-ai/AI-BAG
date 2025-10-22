@@ -1,25 +1,31 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Lock } from "lucide-react";
-
+import { useAuth } from "@/auth/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation(); 
+  const { login } = useAuth();
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const API_BASE = import.meta.env.VITE_API_BASE ?? "http://127.0.0.1:8000";
 
+  const API_BASE = import.meta.env.PROD
+  ? (import.meta.env.VITE_API_BASE as string) // e.g., "https://your-backend.example.com"
+  : ""; // dev: same-origin through Vite proxy
   type LoginResponse = {
   token: string;
   user: { id: string; email: string };
 };
+
+const from = (location.state as any)?.from?.pathname || "/home";
 
 const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
@@ -34,8 +40,9 @@ const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
 
   setLoading(true);
   try {
-    console.log("Try");
-    const res = await fetch(`${API_BASE}/`, {
+    await login(email, password);
+    /*
+    const res = await fetch(`${API_BASE}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -50,23 +57,17 @@ const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
   throw new Error(`HTTP ${res.status}: ${detail}`);
       /*
       const err = await res.json().catch(() => ({}));
-      throw new Error(err?.detail || "Login failed");*/
+      throw new Error(err?.detail || "Login failed");
     }
 
     const data: LoginResponse = await res.json();
-
-    // 3) Persist your session token (or set an HttpOnly cookie if you go that route)
-    localStorage.setItem("auth_token", data.token);
-    localStorage.setItem("auth_user", JSON.stringify(data.user));
-
+*/
     toast({
       title: "Login Successful",
       description: "Welcome back!",
     });
-    navigate("/home");
+    navigate(from, { replace: true }); 
   } catch (err: any) {
-    
-    console.log("Catch");
     toast({
       title: "Login Failed",
       description: err?.message ?? "Something went wrong.",
@@ -76,34 +77,7 @@ const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(false);
   }
 };
-/*
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    }); 
-    
-    const error = null;
-    if (error) {
-      toast({
-        title: "Login Failed",
-        description: error.message,
-        variant: "destructive",
-      });
-    } else {
-      toast({
-        title: "Login Successful",
-        description: "Welcome back!",
-      });
-      navigate("/");
-    }
-
-    setLoading(false);
-  };
-*/
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-blue1/5 via-white to-brand-blue2/5 p-4">
       <Card className="w-full max-w-md shadow-card">

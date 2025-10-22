@@ -1,7 +1,9 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Home, FileText, Mail, Share2, Palette, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { LogoutButton } from "@/components/Logout";
 
 const navigation = [
   { name: "Home", href: "/home", icon: Home },
@@ -92,9 +94,9 @@ export const Sidebar = () => {
 
           {/* Footer */}
           <div className="p-6 border-t border-white/10">
-            <p className="text-xs text-white/50 text-center font-medium">
-              © 2025 Bannister
-            </p>
+            <div className="text-xs text-white/50 text-center font-medium">
+              <LogoutButton />
+            </div>
           </div>
         </div>
       </div>

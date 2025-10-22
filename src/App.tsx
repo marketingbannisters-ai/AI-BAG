@@ -12,6 +12,8 @@ import EmailGenius from "./pages/EmailGenius";
 import SocialPostr from "./pages/SocialPostr";
 import Designer from "./pages/Designer";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "@/auth/ProtectedRoute";
+import PublicOnlyRoute from "@/auth/PublicOnlyRoute";
 
 const queryClient = new QueryClient();
 
@@ -29,12 +31,19 @@ const App = () => {
           <div className={isLoginPage ? "" : "lg:pl-72 transition-all duration-300"}>
             <main className="min-h-screen">
               <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/email-genius" element={<EmailGenius />} />
-                <Route path="/socialpostr" element={<SocialPostr />} />
-                <Route path="/design-genie" element={<Designer />} />
-                <Route path="/reports" element={<Reports />} />
+                  {/* public-only (login) */}
+                  <Route element={<PublicOnlyRoute />}>
+                  <Route path="/" element={<Login />} />
+                  </Route>
+                  
+                  {/* Protected area */}
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/email-genius" element={<EmailGenius />} />
+                    <Route path="/socialpostr" element={<SocialPostr />} />
+                    <Route path="/design-genie" element={<Designer />} />
+                    <Route path="/reports" element={<Reports />} />
+                  </Route>    
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
