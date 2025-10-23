@@ -10,13 +10,22 @@ function join(base: string, path: string) {
   if (!base) return path; // dev proxy or same-origin relative
   return `${stripTrailingSlash(base)}/${stripLeadingSlash(path)}`;
 }
+<<<<<<< HEAD
 
 const API_BASE =
   import.meta.env.PROD
     // Prefer an explicit API in prod; else fall back to the site base (/AI-BAG/)
     ? (import.meta.env.VITE_API_BASE ?? import.meta.env.BASE_URL)
     : "";
+=======
+>>>>>>> 9a8102b17737ed11dd6dc01cb9169fd4f7fefff3
 
+const API_BASE =
+  import.meta.env.PROD
+    // Prefer an explicit API in prod; else fall back to the site base (/AI-BAG/)
+    ? (import.meta.env.VITE_API_BASE ?? import.meta.env.BASE_URL)
+    : "";
+console.log(API_BASE);
 async function request(input: string, init?: RequestInit, retried = false) {
   //const url = input.startsWith("http") ? input : `${API_BASE}${input}`;
    const url = join(API_BASE as string, input);
