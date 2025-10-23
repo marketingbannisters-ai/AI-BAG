@@ -3,16 +3,24 @@ import bcrypt
 import jwt
 from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Any
+from pathlib import Path
+from dotenv import load_dotenv
 from .security import (
     auth_required, issue_tokens, set_cookie, clear_cookie,
     verify_token_from_request, sign_jwt, JWT_SECRET, JWT_ALG,ACCESS_MIN, REFRESH_DAYS
 )
-
 from pydantic import BaseModel, EmailStr
 from fastapi import FastAPI, HTTPException, APIRouter, Depends, Request, Response
 from fastapi.responses import JSONResponse
 from supabase import create_client, Client
-from dotenv import load_dotenv
+"""
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"), override=False)
+
+# Then overlay environment-specific file
+env = os.getenv("ENV", "development")
+env_file = ".env.production" if env == "production" else ".env.development"
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), env_file), ove
+rride=True)"""
 
 load_dotenv()
 
@@ -63,11 +71,6 @@ def login(payload: LoginRequest, response: Response):
     tokens = issue_tokens(user_id=user["user_id"], email=user["email"])
 
     # 3) set HttpOnly cookies
-    '''
-    resp = JSONResponse(
-        content={"user": {"id": user["user_id"], "email": user["email"]}},
-        status_code=200,
-    )'''
     set_cookie(response, "access_token", tokens["access"], max_age=ACCESS_MIN * 60)
     set_cookie(response, "refresh_token", tokens["refresh"], max_age=REFRESH_DAYS * 24 * 3600)
 
@@ -88,12 +91,13 @@ def logout(response: Response):
     return {"ok": True}
 
 #post logout is for link click
+"""
 @router.get("/auth/logout")
 def logout(response: Response):
     clear_cookie(response, "access_token")
     clear_cookie(response, "refresh_token")
     return {"ok": True}
-
+"""
 
 @router.post("/auth/refresh")
 def refresh(request: Request, response: Response):

@@ -17,9 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const API_BASE = import.meta.env.PROD
-  ? (import.meta.env.VITE_API_BASE as string) // e.g., "https://your-backend.example.com"
-  : ""; // dev: same-origin through Vite proxy
+
   type LoginResponse = {
   token: string;
   user: { id: string; email: string };
@@ -41,6 +39,11 @@ const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
   setLoading(true);
   try {
     await login(email, password);
+    toast({
+      title: "Login Successful",
+      description: "Welcome back!",
+    });
+    navigate(from, { replace: true }); 
     /*
     const res = await fetch(`${API_BASE}/auth/login`, {
       method: "POST",
@@ -61,12 +64,7 @@ const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     }
 
     const data: LoginResponse = await res.json();
-*/
-    toast({
-      title: "Login Successful",
-      description: "Welcome back!",
-    });
-    navigate(from, { replace: true }); 
+*/ 
   } catch (err: any) {
     toast({
       title: "Login Failed",

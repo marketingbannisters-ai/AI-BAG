@@ -1,7 +1,6 @@
 import os
 from typing import Any, Dict, Optional
 from datetime import datetime, timedelta, timezone
-
 import jwt
 from fastapi import HTTPException, Request, Response, Depends
 

@@ -1,7 +1,5 @@
 // src/lib/api.ts
-const API_BASE = import.meta.env.PROD
-  ? (import.meta.env.VITE_API_BASE as string) // e.g., "https://your-backend.example.com"
-  : ""; // dev: same-origin through Vite proxy
+const API_BASE = "";
 
 async function request(input: string, init?: RequestInit, retried = false) {
   const url = input.startsWith("http") ? input : `${API_BASE}${input}`;
