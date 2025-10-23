@@ -1,5 +1,5 @@
 // src/lib/api.ts
-const API_BASE = "";
+const API_BASE = "https://marketingbannisters-ai.github.io/AI-BAG";
 
 async function request(input: string, init?: RequestInit, retried = false) {
   const url = input.startsWith("http") ? input : `${API_BASE}${input}`;
