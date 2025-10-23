@@ -12,6 +12,7 @@ ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:8080",
     "https://marketingbannisters-ai.github.io",
+    "https://ai-bag-716447624057.us-west1.run.app",
     # add your deployed frontend origin(s) here
 ]
 
