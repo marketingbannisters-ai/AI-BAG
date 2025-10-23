@@ -13,14 +13,6 @@ from pydantic import BaseModel, EmailStr
 from fastapi import FastAPI, HTTPException, APIRouter, Depends, Request, Response
 from fastapi.responses import JSONResponse
 from supabase import create_client, Client
-"""
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"), override=False)
-
-# Then overlay environment-specific file
-env = os.getenv("ENV", "development")
-env_file = ".env.production" if env == "production" else ".env.development"
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), env_file), ove
-rride=True)"""
 
 load_dotenv()
 
