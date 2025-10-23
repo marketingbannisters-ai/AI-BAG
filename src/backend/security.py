@@ -41,6 +41,7 @@ def set_cookie(resp: Response, name: str, value: str, max_age: int):
         "httponly": True,
         "secure": COOKIE_SECURE,
         "samesite": COOKIE_SAMESITE,
+        "domain": None,
         "path": "/",
     }
     # Only set domain if provided; otherwise browsers may reject on localhost
