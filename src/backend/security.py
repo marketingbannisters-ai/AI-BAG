@@ -2,16 +2,23 @@ import os
 from typing import Any, Dict, Optional
 from datetime import datetime, timedelta, timezone
 import jwt
-from fastapi import HTTPException, Request, Response, Depends
+from fastapi import HTTPException, Request, Response
+from .env import get_env
 
 JWT_SECRET = os.environ.get("JWT_SECRET", "Bannister")  # set strong secret in prod
 JWT_ALG = "HS256"
 ACCESS_MIN = int(os.environ.get("JWT_ACCESS_MIN", "30"))      # 30 min
 REFRESH_DAYS = int(os.environ.get("JWT_REFRESH_DAYS", "7"))   # 7 days
 
+
 COOKIE_DOMAIN = os.getenv("COOKIE_DOMAIN")            # e.g. ".yourdomain.com" in prod
-COOKIE_SECURE = os.getenv("COOKIE_SECURE", "false").lower() == "true"  # True on HTTPS
-COOKIE_SAMESITE = os.getenv("COOKIE_SAMESITE", "Lax")          # "Lax" | "Strict" | "None"
+env = get_env(None)
+if env == "local":
+    COOKIE_SECURE = False
+    COOKIE_SAMESITE = "Lax" 
+else:
+    COOKIE_SECURE = os.getenv("COOKIE_SECURE", "false").lower() == "true"  # True on HTTPS
+    COOKIE_SAMESITE = os.getenv("COOKIE_SAMESITE", "Lax")          # "Lax" | "Strict" | "None"
 
 def _now() -> datetime:
     return datetime.now(timezone.utc)
@@ -53,17 +60,20 @@ def set_cookie(resp: Response, name: str, value: str, max_age: int):
 def clear_cookie(resp: Response, name: str):
     resp.delete_cookie(key=name, domain=COOKIE_DOMAIN, path="/")
 
-def verify_token_from_request(request: Request, expected_type: str = "access") -> Dict[str, Any]:
-    """Prefer HttpOnly cookie 'access_token'; fall back to Authorization: Bearer."""
-    print(f"verify_token_from_request({expected_type}) cookies:", dict(request.cookies))
-    token: Optional[str] = request.cookies.get("access_token")
-    if not token:
-        auth = request.headers.get("Authorization", "")
-        if auth.startswith("Bearer "):
-            token = auth.removeprefix("Bearer ").strip()
+def _extract_bearer_token(auth_header: Optional[str]) -> Optional[str]:
+    # Accept "Bearer <token>" in a case-insensitive way and trim spaces
+    if not auth_header:
+        return None
+    parts = auth_header.strip().split()
+    if len(parts) == 2 and parts[0].lower() == "bearer":
+        return parts[1].strip()
+    return None
 
+def verify_token_from_request(request: Request, expected_type: str = "access") -> Dict[str, Any]:
+    token = _extract_bearer_token(request.headers.get("Authorization"))
+ 
     if not token:
-        raise HTTPException(status_code=401, detail="Missing token")
+        raise HTTPException(status_code=401, detail="Missing Authorization bearer token")
 
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALG])

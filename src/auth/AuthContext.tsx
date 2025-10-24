@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { api } from "@/lib/api";
+import { api, setTokens, clearTokens, loadTokens } from "@/lib/api"; 
 
 type PublicUser = { id: string; email: string };
 type User = PublicUser | null;
@@ -34,9 +34,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.debug("[Auth] /auth/me error -> user=null", e);
     }
   };
-
+  
   useEffect(() => {
     // on first load, see if the server recognizes us (cookies)
+    loadTokens(); // NEW CODE
     refreshMe().finally(() => setLoading(false));
   }, []);
 
@@ -49,17 +50,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       throw new Error(detail);
     }
 
-    // Login returns { user: { id, email } }
-    const data: { user: PublicUser } = await res.json();
-    setUser(data.user);                 // set immediately so ProtectedRoute won't bounce
-    console.debug("[Auth] login OK -> setUser", data.user);
-
-    // verify in background (no await; don't block navigation)
+    const data: { user: PublicUser; access: string; refresh: string } = await res.json();
+    setTokens(data.access, data.refresh); 
+    setUser(data.user);
     refreshMe().catch(() => {});
   };
 
   const logout = async () => {
-    await api.post("/auth/logout");
+    clearTokens();   
     setUser(null);
   };
 
