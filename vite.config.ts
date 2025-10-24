@@ -11,8 +11,6 @@ export default defineConfig(({ mode }) => ({
      proxy: {
       "/auth": { target: "http://localhost:8000", changeOrigin: true, secure: false },
       "/api":  { target: "http://localhost:8000", changeOrigin: true, secure: false },
-      "/lib":  { target: "http://localhost:8000", changeOrigin: true, secure: false },
-      "/backend": { target: "http://localhost:8000", changeOrigin: true, secure: false },
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
