@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Reports from "./pages/Reports";
 import EmailGenius from "./pages/EmailGenius";
+import RAG from "./pages/RAG";
 import SocialPostr from "./pages/SocialPostr";
 import Designer from "./pages/Designer";
 import NotFound from "./pages/NotFound";
@@ -40,6 +41,7 @@ const App = () => {
                   <Route element={<ProtectedRoute />}>
                     <Route path="/home" element={<Home />} />
                     <Route path="/email-genius" element={<EmailGenius />} />
+                    <Route path="/rag" element={<RAG />} />
                     <Route path="/socialpostr" element={<SocialPostr />} />
                     <Route path="/design-genie" element={<Designer />} />
                     <Route path="/reports" element={<Reports />} />

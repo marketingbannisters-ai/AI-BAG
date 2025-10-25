@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "bannister-474817",
+  "private_key_id": "09feaf178f931cb55ba75acde9dab5f3c4188ac3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCzJiyQe68ef6aM\nQdD1vfgPmJOhv/u5lRKwtQ9/qWSROtCYDS3HdMzpH3YxjEKptIWVd0jV6qgWByI+\nxVWcZAA6wfriifxp5PN+34mdocfXzn9zyd1RChgNgx5u3dN/tjWBnYI5xZ/jaNHP\nSRt5YWhcb1SK4ZZHZZ1s0pu8IYPb5rU3YR160lJqy+jpUkn34Qw7qSFWeNKq+Cy+\nX8+gNJ1OSbqjg3PNbcjoNYt51pmpokL7O0gmVqRa1b24XviBjk0GIkCxeR0oqZXH\n7GqQyoP7N93Zx7VDcIo5I9VAe5RUYy5M04wImurIt1y5VtGuuge5DoWGjx6xcj/q\n1mXsWlJ7AgMBAAECggEAEmN9uYroi8Hgj48F6uOH/dnUdYrmRMNXesnrAFib2Qhn\nduQLaejES72N/UH/abn86D2pPUPr4u7yheztf7MIDv/wR6aQQTJeCAzb7FE52R36\nGSGEVRgrJd/qlMiyN+61CUvonRN6+PW+a39+kXP9KVfIHsVPDp8QjKYFlEcAaObV\n5vSMElOjk9lrcmWOJJKbVFh8EXs0KZGA+pSMxha1NgGjbwivmXajBe9886O+8vdW\niN95osxASFP19LYZzNuqg+/VJ6EwRiuUbfYmpcaa4+pbxAw683EvcJldt2kgXP0r\nv4eiYcBuSjCUXPCZGaCoZM0W1l1tjqPawuosK3a2qQKBgQD9VwZC8Hy+D5gbHeUt\nNvBWpcZPJ0ywIp/0qsNjXwUGVyJCSKaA56lzOnTjdMTxpAzs2mY3acbJ2AbKwfYp\nz3o7NOHc4hvMFnjl+ktwNOMoFtpuMH6EqNRJvcwXIGIMtvCCPP6bJOTR6xJY+XCt\nvh408T1Fjyy+3Tb4V+2CRjsVTwKBgQC1B7mv7EMqDGOqo2RDTJNmlXl3pruUes88\ncyYEuBdf/GldnUP6sXg0ePMyzb9lUkEjbh9x2BSWosQN6xrP4H0M/9s8D/hIYXcu\nUUdysY6qABkZt13aphkUJ73ysExhcN1QW/dsNocFUdVS/+j0edisZy0EAvFto//c\nCZuOm8Z9FQKBgQC5RkCtCeWgthTemAF4DLq+E6SxVKNwGRJ0Q8J7VQ1+spC6exlS\nIpo5TCIaCtbRhdFyEtM4aWJZUWS+OhXGRBc3X5hjCvWbT0ABqQgsunD6a6Q5e7u7\nVyFSAL1WmHc8pznDdcoaOmQh5VHYwiwW1HiQ7XCLA4eM2omOG/f2E1i4XwKBgQC0\ntmeI1GMfwIpltwHJpNGoICLHbKvoRshFYfVb1KGQ8hoEl49a3HpQd0TfPECJ1pir\n06yUKs4yqXzpH/798O0kYuzpgk+pgZJFrGGUfucZkUt9Pmz0bcavNhUKBS/aPZ7Q\nL15Iqg4TI2O+nTRhiJjhUYXAcWesuYAamYSt0ZdNGQKBgQDukSOQ5cDgdlV1fdZR\ngve3BtU9Iv12YTUNJP50EUaVlZe2vpOIsGk1MHU8Ag8FGKQLuU6jAM2wlJP0lk9O\nzCFZyOVGQArgNYuTSHhOrZ7IybqptW+THLg/tVhMLZ67tFzwlDdV3Wg4PCRTiZTu\nWcAk5rpWDe/DhNRtkj812IE8bg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "finance-files-reader@bannister-474817.iam.gserviceaccount.com",
+  "client_id": "110041490690839909464",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/finance-files-reader%40bannister-474817.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -8,8 +8,9 @@ import { LogoutButton } from "@/components/Logout";
 const navigation = [
   { name: "Home", href: "/home", icon: Home },
   { name: "Email Genius", href: "/email-genius", icon: Mail },
+  { name: "RAG", href: "/rag", icon: Mail },
   { name: "SocialPostr", href: "/socialpostr", icon: Share2 },
-  { name: "DesignGenie", href: "/design-genie", icon: Palette },
+ // { name: "DesignGenie", href: "/design-genie", icon: Palette },
   { name: "Reports", href: "/reports", icon: FileText },
 ];
 
